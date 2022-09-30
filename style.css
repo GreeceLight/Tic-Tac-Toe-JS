@@ -1,0 +1,69 @@
+:root{
+    --font: Verdana, Geneva, Tahoma, sans-serif;
+    --width: 510px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0%; margin: 0%;
+}
+.start-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    margin: 20px; padding: 20px 0px;
+    width: var(--width);
+
+    border-radius: 30px;
+    background-color: rgb(189, 189, 189);
+}
+.start-area button{
+    padding: 5px 20px;
+    font-size: 15px;
+    font-family: var(--font);
+}
+.start-area #playerName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--font);
+}
+#playerName input{
+    height: 30px; width: 60%;
+
+    font-family: var(--font);
+    font-size: 25px;
+}
+.game{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 170px);
+    grid-template-rows: repeat(3, 170px);
+    border: 5px black solid;
+    background-color: blue;
+    padding: 0%;
+}
+.gameBlock{
+    text-align: center;
+    list-style-type: none;
+    font-size: 150px;
+    border : 5px solid black;
+}
+
+.player-turn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px; width: var(--width);
+
+    font-family: var(--font);
+
+    border-radius: 30px;
+    background-color: chocolate;
+}
