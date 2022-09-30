@@ -1,56 +1,56 @@
 const gameBoard = document.querySelector(".game");
 const player1Val = document.querySelector(".player1Name")
 const player2Val = document.querySelector(".player2Name")
-const newGameButton = document.querySelector("#newGameButton")
 const startGameButton = document.querySelector("#startGameButton")
 
 const newGame = (() =>{
-    let gameBlockArray = []
-    const setBoard = () => {
-        for(let i = 1; i <= 9; i++){
-         const gameBlock = document.createElement("li");
-         gameBlock.className = "gameBlock";
-         gameBlock.textContent = "X"
-         settingBlockStates(gameBlock, i);
-         //have a function that gives each li an event listener for a click to
-         //change the current state of the block
-         //must check on which player's turn it is to see if the block will have
-         //X's or O's
-         gameBoard.appendChild(gameBlock);
-        }
-        console.log(gameBlockArray);
-    }
+    let gameBlockArray = [];
+    players = playerCreator();
 
-    const settingBlockStates = (newBlock, number) =>{
-        //putting the current states of each block into an object which will
-        //then be put into the gameBlockArray array
-        const block = {
-            xBlock : newBlock,
-            number : number,
-            toPlayer : null
-        }
-        gameBlockArray.push(block);
-        
+    
+    function Block(newBlock, number) {
+        this.elBlock = newBlock;
+        this.number = number;
+        this.sign = null;
     }
-    return {setBoard};
+    
+    const changeBlockStates = clickBlock => {
+        clickBlock.elBlock.textContent = "Hi"
+    }
+    return{gameBlockArray, Block}
 });
 
-const playerCreator = ((pName, pSign) =>{
-    let player = {
-        playerName : pName,
-        playerSign : pSign
-    }
+const setBoard = () => {
+    console.log(newGame().gameBlockArray.length);
+    if(newGame().gameBlockArray.length == 0){
+        for(let i = 1; i <= 9; i++){
+            const gameBlock = document.createElement("li");
+            
+            const block = new newGame.Block(gameBlock, i)
+            gameBlockArray.push(block)
+            gameBlock.addEventListener("click", (Event) => changeBlockStates(block))
+            gameBlock.className = "gameBlock";
+            gameBlock.textContent = "X"
+            gameBoard.appendChild(gameBlock);
+        }
+    }else{}
+    console.log(gameBlockArray.length);
+}
 
-    function introduce (){
-        console.log(player.playerName, player.playerSign);
+const playerCreator = (() =>{
+    player1 = {
+        playerName : player1Val.value,
+        playerSign : "X" 
     }
-    return {introduce, player}
+    player2 = {
+        playerName : player2Val.value,
+        playerSign : "O"
+    }
+    return playerArray = [player1, player2];
 })
 
 const beginGame = () => {
-    player1 =playerCreator(player1Val.value, "X");
-    player2 =playerCreator(player2Val.value, "O");
+ setBoard();
 };
 
-newGameButton.addEventListener("click", (Event) => newGame().setBoard());
 startGameButton.addEventListener("click", beginGame)
