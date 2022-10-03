@@ -42,7 +42,7 @@ body{
 .game{
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(3, 170px);
+    grid-template-columns: repeat(3, 180px);
     grid-template-rows: repeat(3, 170px);
     border: 5px black solid;
     background-color: blue;
