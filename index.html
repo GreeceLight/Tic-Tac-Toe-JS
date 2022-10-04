@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="start-area">
+        <button id="newGameButton">New Game</button>
         <span id="playerName">
             <h3>Player 1 Name: </h3>
             <input type="text" value="" class="player1Name">
@@ -18,7 +19,11 @@
             <h3>Player 2 Name: </h3>
             <input type="text" value="" class="player2Name">
         </span>
-        <button id="startGameButton">New Game</button>
+        <span id="saveName">
+            <p>Save Names on New? </p>
+            <input type="checkbox" name="saveGame" id="saveNames">
+        </span>
+        <button id="startGameButton">Start Game</button>
     </div>
     <div class="game-area">
         <ul class="game">
@@ -26,7 +31,7 @@
         </ul>
     </div>
     <div class="player-turn">
-        <h1>Player X Turn</h1>
+        <h1 id="playerTurnText">Who's it Gonna Be?</h1>
     </div>
 </body>
 </html>
