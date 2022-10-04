@@ -33,10 +33,10 @@ function newGame() {
     }
     player1Val.value = ""
     player2Val.value = ""
+    playerTurnText.textContent = "Who's it Gonna Be?"
 }
 
 const setupGameBoard = () =>{
-    
     if(gameBoardProps.boardTiles.length == 0){
         for(let tileNum = 1; tileNum <= 9; tileNum++){
             const newTile = document.createElement("li");
@@ -51,9 +51,11 @@ const setupGameBoard = () =>{
 
     function changeSigns(clickedTile){
         if(clickedTile.element.textContent == ""){
-            clickedTile.sign = gameBoardProps.currentPlay;
+            clickedTile.play = gameBoardProps.currentPlay;
             clickedTile.element.textContent = gameBoardProps.currentPlay;
+            // console.log(clickedTile.play);
             determineTurn();
+            findWinner();
         };
     }
     
@@ -84,12 +86,46 @@ const setupGameBoard = () =>{
                 gameBoardProps.currentPlay = "X";
                 playerTurnText.textContent = `It is ${gameBoardProps.players[0].name}'s turn`;
                 break;
-
         }
     }
 }
 
+const findWinner = () =>{
+    //Need to check each possible outcome for case that one player has won
+    //loop through the array checking for every possible outcome
+    //Need to check 1,2,3 for X O
+    //Need to check 4,5,6 for X O
+    //Need to check 7,8,9 for X O
+    //Need to check 1,4,7 for X O
+    //Need to check 2,5,8 for X O
+    //Need to check 3,6,9 for X O
+    //Need to check 1,5,9 for X O
+    //Need to check 3,5,7 for X O
+    allTiles();
 
+    function leftToRight(){
+        //Checks all possible moves from left to right
+    }
+    function topToBottom(){
+        //Checks all possible moves from top to bottom
+        }
+    }
+    function crissCross(){
+        //Checks all possible moves from corners to corners
+    }
+    function allTiles(){
+        //Checks if all tiles are filled
+        let tiles = 0
+        for(let i = 0; i < 9; i++){
+            if(gameBoardProps.boardTiles[i].play){
+                tiles++
+                if(tiles == gameBoardProps.boardTiles.length){
+                    alert("OI!")
+                    newGame();
+                }
+            }
+        }
+    }
 
 startGameButton.addEventListener("click",setupGameBoard);
 newGameButton.addEventListener("click", newGame);
