@@ -4,6 +4,7 @@ const player2Val = document.querySelector(".player2Name")
 const newGameButton = document.querySelector("#newGameButton")
 const startGameButton = document.querySelector("#startGameButton")
 const playerTurnText = document.querySelector("#playerTurnText");
+const saveNamesCheck = document.querySelector("#saveNames");
 
 function Block(element, number, play) {
     this.element = element;
@@ -31,8 +32,10 @@ function newGame() {
     while (gameBoard.hasChildNodes()){
         gameBoard.removeChild(gameBoard.firstChild)
     }
-    player1Val.value = ""
-    player2Val.value = ""
+    if(!saveNamesCheck.checked){
+        player1Val.value = ""
+        player2Val.value = ""
+    }
     playerTurnText.textContent = "Who's it Gonna Be?"
 }
 
@@ -93,25 +96,35 @@ const setupGameBoard = () =>{
 const findWinner = () =>{
     //Need to check each possible outcome for case that one player has won
     //loop through the array checking for every possible outcome
-    //Need to check 1,2,3 for X O
-    //Need to check 4,5,6 for X O
-    //Need to check 7,8,9 for X O
-    //Need to check 1,4,7 for X O
-    //Need to check 2,5,8 for X O
-    //Need to check 3,6,9 for X O
-    //Need to check 1,5,9 for X O
-    //Need to check 3,5,7 for X O
-    allTiles();
+    leftToRight(gameBoardProps.boardTiles);
+    topToBottom(gameBoardProps.boardTiles);
+    crissCross(gameBoardProps.boardTiles);
+    if(gameBoardProps.boardTiles.length != 0) allTiles();
 
-    function leftToRight(){
+    function leftToRight(tiles){
         //Checks all possible moves from left to right
+        //Need to check 1,2,3 for X O
+        //Need to check 4,5,6 for X O
+        //Need to check 7,8,9 for X O
+        checkTiles(tiles, 0, 1, 2);
+        checkTiles(tiles, 3, 4, 5);
+        checkTiles(tiles, 6, 7, 8);
     }
-    function topToBottom(){
+    function topToBottom(tiles){
         //Checks all possible moves from top to bottom
-        }
+        //Need to check 1,4,7 for X O
+        //Need to check 2,5,8 for X O
+        //Need to check 3,6,9 for X O
+        checkTiles(tiles, 0, 3, 6);
+        checkTiles(tiles, 1, 4, 7);
+        checkTiles(tiles, 2, 5, 8);
     }
-    function crissCross(){
+    function crissCross(tiles){
         //Checks all possible moves from corners to corners
+        //Need to check 1,5,9 for X O
+        //Need to check 3,5,7 for X O
+        checkTiles(tiles, 0, 4, 8);
+        checkTiles(tiles, 2, 4, 6);
     }
     function allTiles(){
         //Checks if all tiles are filled
@@ -120,12 +133,24 @@ const findWinner = () =>{
             if(gameBoardProps.boardTiles[i].play){
                 tiles++
                 if(tiles == gameBoardProps.boardTiles.length){
-                    alert("OI!")
+                    alert("You filled all the tiles! Nobody won :(")
                     newGame();
                 }
             }
         }
     }
+
+    function checkTiles(tilesArray, first, second, third){
+        if(tilesArray[first].play == "O" && tilesArray[second].play == "O" && tilesArray[third].play == "O"){
+            alert(`${gameBoardProps.players[1].name} Won!`);
+            newGame();
+        }
+        else if(tilesArray[first].play == "X" && tilesArray[second].play == "X" && tilesArray[third].play == "X"){
+            alert(`${gameBoardProps.players[0].name} Won!`);
+            newGame();
+        }
+    }
+}
 
 startGameButton.addEventListener("click",setupGameBoard);
 newGameButton.addEventListener("click", newGame);

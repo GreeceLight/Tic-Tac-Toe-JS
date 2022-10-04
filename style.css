@@ -4,32 +4,42 @@
 }
 body{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    padding: 0%; margin: 0%;
+    justify-content: space-evenly;
+    padding: 100px 0%; margin: 0%;
+    
+    background-color: lavender;
 }
 .start-area{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 5px;
 
     margin: 20px; padding: 20px 0px;
-    width: var(--width);
+    width: var(--width); height: minmax(300px, maxcontent);
 
     border-radius: 30px;
-    background-color: rgb(189, 189, 189);
+    background-color: lightsteelblue;
+    box-shadow: rgba(112, 112, 112, 0.555) 5px 5px 2px;
 }
 .start-area button{
-    padding: 5px 20px;
-    font-size: 15px;
+    padding: 10px 25px;
+    font-size: 18px;
     font-family: var(--font);
+    font-weight: 900;
+    border: none;
+    border-radius: 20px;
+    box-shadow: white 2px 2px 2px;
+    background-color: rgb(189, 212, 255)
 }
 .start-area #playerName{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 
     font-family: var(--font);
 }
@@ -38,20 +48,37 @@ body{
 
     font-family: var(--font);
     font-size: 25px;
+
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(112, 112, 112, 0.212) 2px 2px 2px;;
+}
+#saveName {
+    display: flex;
+    font-family: var(--font);
+    font-size: 17px;
+}
+#saveName input{
+    height: 30px; width: 30px;
+    align-self: center;
 }
 .game{
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(3, 180px);
-    grid-template-rows: repeat(3, 170px);
+    grid-template-columns: repeat(3, minmax(180px, 300px));
+    grid-template-rows: repeat(3, minmax(180px, 300px));
     border: 5px black solid;
+    /* border-radius: 40px; */
     background-color: blue;
     padding: 0%;
 }
 .gameBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     list-style-type: none;
-    font-size: 150px;
+    font-size: 300px;
     border : 5px solid black;
 }
 
@@ -60,7 +87,7 @@ body{
     justify-content: center;
     align-items: center;
 
-    height: 100px; width: var(--width);
+    height: minmax(100px, maxcontent); width: var(--width);
 
     font-family: var(--font);
 
